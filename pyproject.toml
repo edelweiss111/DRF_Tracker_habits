@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "kr-7-drf-tracker"
+version = "0.1.0"
+description = ""
+authors = ["Saveliy <ya.savchik2000@mail.ru>"]
+readme = "README.md"
+packages = [{include = "kr_7_drf_tracker"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psycopg2-binary = "^2.9.9"
+pillow = "^10.1.0"
+djangorestframework = "^3.14.0"
+python-dotenv = "^1.0.0"
+django-filter = "^23.5"
+djangorestframework-simplejwt = "^5.3.1"
+coverage = "^7.3.4"
+drf-yasg = "^1.21.7"
+django-cors-headers = "^4.3.1"
+stripe = "^7.10.0"
+celery = "^5.3.6"
+redis = "^5.0.1"
+ipython = "^8.19.0"
+django-celery-beat = "^2.5.0"
+pyproject-toml = "^0.0.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
