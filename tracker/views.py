@@ -1,5 +1,4 @@
-from rest_framework import viewsets
-
+from rest_framework import viewsets, generics
 from tracker.models import Habit
 from tracker.paginators import HabitPagination
 from tracker.permissions import IsOwner
@@ -18,13 +17,22 @@ class HabitViewSet(viewsets.ModelViewSet):
             permission_classes = [IsOwner]
         return [permission() for permission in permission_classes]
 
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     queryset = Habit.objects.filter(is_public=True)
-    #     return queryset
+    def get_queryset(self):
+        """Выводятся только опубликованные привычки"""
+        queryset = Habit.objects.filter(is_public=True)
+        return queryset
 
     def perform_create(self, serializer):
         """Присваивание автора к привычке"""
         new_habit = serializer.save()
         new_habit.author = self.request.user
         new_habit.save()
+
+
+class UserHabitAPIView(generics.ListAPIView):
+    serializer_class = HabitSerializer
+
+    def get_queryset(self):
+        """Выводятся только привычки пользователя"""
+        queryset = Habit.objects.filter(author=self.request.user)
+        return queryset
