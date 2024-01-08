@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
+    'django_celery_beat',
 
     'tracker',
     'users',
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,10 +130,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# MEDIA
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -148,3 +147,17 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    os.getenv('FRONTEND_URL'),
+    os.getenv('BACKEND_URL'),
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv('BACKEND_URL'),
+]
+
+# CELERY
+CELERY_BROKER_URL = os.getenv('REDIS_LOCATION')
+CELERY_RESULT_BACKEND = os.getenv('REDIS_LOCATION')

@@ -1022,6 +1022,31 @@ toml = "*"
 wheel = "*"
 
 [[package]]
+name = "pytelegrambotapi"
+version = "4.14.1"
+description = "Python Telegram bot api."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyTelegramBotAPI-4.14.1.tar.gz", hash = "sha256:6e54b692c57fc721e3d69dba993cf5e918b2a75f04fe966c5825df81ed3f0755"},
+]
+
+[package.dependencies]
+requests = "*"
+
+[package.extras]
+aiohttp = ["aiohttp"]
+aioredis = ["aioredis"]
+coloredlogs = ["coloredlogs"]
+fastapi = ["fastapi"]
+json = ["ujson"]
+pil = ["Pillow"]
+psutil = ["psutil"]
+redis = ["redis (>=3.4.1)"]
+uvicorn = ["uvicorn"]
+watchdog = ["watchdog"]
+
+[[package]]
 name = "python-crontab"
 version = "3.0.0"
 description = "Python Crontab API"
@@ -1490,4 +1515,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "613926b650a2cd92a6ff270abe95f9f4c063efe020e88f30dcd3c7b9d048e2cd"
+content-hash = "ff6d9fa6829ec7429ecfff12c5e64a1b648a03d7f44e2735d9f8ae9b2083d167"

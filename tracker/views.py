@@ -30,6 +30,7 @@ class HabitViewSet(viewsets.ModelViewSet):
 
 
 class UserHabitAPIView(generics.ListAPIView):
+    """Эндпоинт вывода списка привычек пользователя"""
     serializer_class = HabitSerializer
 
     def get_queryset(self):

@@ -8,16 +8,18 @@ NULLABLE = {'blank': True, 'null': True}
 class Habit(models.Model):
     """Модель - привычка"""
 
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Автор")
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Автор",
+                               related_name='habit')
     place = models.CharField(max_length=50, verbose_name='Место выполнения')
     time = models.DateTimeField(verbose_name='Время выполнения')
     action = models.CharField(max_length=150, verbose_name='Действие')
     pleasant = models.BooleanField(default=False, verbose_name='Признак приятности')
     related_habit = models.ForeignKey('Habit', on_delete=models.SET_NULL, **NULLABLE, verbose_name='Связанная привычка')
-    periodisity = models.PositiveIntegerField(validators=[MaxValueValidator(7)], default=1, verbose_name='Периодичность')
+    periodisity = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(7)], default=1,
+                                              verbose_name='Периодичность(в днях)')
     reward = models.CharField(max_length=100, **NULLABLE, verbose_name='Вознаграждение')
     complete_time = models.PositiveIntegerField(validators=[MaxValueValidator(120)], verbose_name='Время выполнения')
-    is_public = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=False, verbose_name='Признак публикации')
 
     def __str__(self):
         return f'{self.action}'
