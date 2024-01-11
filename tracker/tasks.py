@@ -22,18 +22,17 @@ def reminder_habits():
         message = f'В {habit.time.strftime("%H:%M")} нужно {habit.action} в {habit.place}'
 
         try:
-            bot.send_message(chat_id=chat_id, text=message)
+            response = bot.send_message(chat_id=chat_id, text=message)
 
             for i in range(7):
                 day = i + 1
                 if habit.periodisity == day:
                     habit.time += timedelta(days=day)
                     break
+            return response
 
         except Exception as e:
             print(e)
 
         finally:
             habit.save()
-
-
