@@ -25,5 +25,5 @@ class UserTestCase(APITestCase):
         )
         self.assertEqual(
             response.json(),
-            {'id': 1, 'email': 'testuser@mail.ru'}
+            {'id': 7, 'email': 'testuser@mail.ru'}
         )

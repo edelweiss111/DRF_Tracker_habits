@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -161,3 +161,10 @@ CSRF_TRUSTED_ORIGINS = [
 # CELERY
 CELERY_BROKER_URL = os.getenv('REDIS_LOCATION')
 CELERY_RESULT_BACKEND = os.getenv('REDIS_LOCATION')
+
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'tracker.tasks.reminder_habits',
+        'schedule': timedelta(minutes=1)
+    }
+}

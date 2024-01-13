@@ -29,7 +29,6 @@ def reminder_habits():
                 if habit.periodisity == day:
                     habit.time += timedelta(days=day)
                     break
-            return response
 
         except Exception as e:
             print(e)
