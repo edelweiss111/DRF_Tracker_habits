@@ -1,4 +1,4 @@
-# KR_7_DRF_Tracker
+# DRF_Tracker_habits
 
 #### Структура проекта:
 config/
